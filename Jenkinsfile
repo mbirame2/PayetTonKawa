@@ -16,6 +16,11 @@ pipeline {
             }
         }
 
+        stage('Check Java Version') {
+            steps {
+                sh 'java -version'
+            }
+        }
         stage('Setup Python Environment') {
             steps {
                 script {
