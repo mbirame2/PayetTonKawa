@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = 'mbirame2/payeTonKawa-produit'
         SONARQUBE_URL = 'http://localhost:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
+        PATH = "/opt/sonar-scanner-4.6.2.2472-linux/bin:$PATH"
     }
 
     stages {
@@ -42,7 +43,6 @@ pipeline {
                 sh "./venv/bin/pip install pytest==6.2.4"
                 sh "./venv/bin/pip install requests==2.25.1"
                 sh "./venv/bin/pip install fastapi"
-                sh "./venv/bin/pip install sonar-scanner"
                 sh './venv/bin/pytest testu.py'
             }
         }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "./venv/bin/sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_TOKEN}"
+                        sh "sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_TOKEN}"
                     }
                 }
             }
