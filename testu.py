@@ -25,6 +25,26 @@ app.dependency_overrides[get_db_connection] = override_get_db_connection
 
 client = TestClient(app)
 
+
+def create_table():
+    connection = sqlite3.connect('MSPR.db')
+    cursor = connection.cursor()
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Product (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        description TEXT,
+        price REAL NOT NULL,
+        quantity INTEGER NOT NULL
+    )
+    ''')
+
+    connection.commit()
+    connection.close()
+
+create_table()
+
 def test_create_product():
     response = client.post("/products", json={"name": "Test Product", "description": "This is a test product", "price": 10.99, "quantity": 100})
     assert response.status_code == 200
