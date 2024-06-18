@@ -22,8 +22,8 @@ pipeline {
                         if ! command -v python3 &> /dev/null
                         then
                             echo "Python 3 could not be found. Installing..."
-                            sudo apt update
-                            sudo apt install -y python3 python3-venv
+                            apt update
+                            apt install -y python3 python3-venv
                         fi
                     '''
                     
