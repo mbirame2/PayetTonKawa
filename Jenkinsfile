@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'mbirame2/payeTonKawa-produit'
-        SONARQUBE_URL = 'http://localhost:9000'
+        SONARQUBE_URL = 'http://192.168.1.71:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         PATH = "/opt/sonar-scanner-4.6.2.2472-linux/bin:$PATH"
     }
