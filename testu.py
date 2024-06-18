@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from api import app, get_db_connection
+import sqlite3
 
 # Utiliser une base de données SQLite en mémoire pour les tests
 DATABASE_URL = "sqlite:///./test.db"
