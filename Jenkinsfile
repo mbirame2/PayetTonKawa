@@ -6,6 +6,8 @@ pipeline {
         SONARQUBE_URL = 'http://10.60.120.211:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
+        SONARQUBE_LOGIN = 'admin'
+        SONARQUBE_PASSWORD = 'musulmant'
         //PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         PATH = "/opt/sonar-scanner-6.0.0.4432-linux/bin:$PATH"
     }
@@ -61,7 +63,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${SONARQUBE_TOKEN}"
+                        sh "sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD}"
                     }
                 }
             }
