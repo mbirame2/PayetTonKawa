@@ -9,7 +9,7 @@ pipeline {
         SONARQUBE_LOGIN = 'admin'
         SONARQUBE_PASSWORD = 'musulmant'
         //PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
-        PATH = "/opt/sonar-scanner-6.0.0.4432-linux/bin:$PATH"
+        PATH = "/opt/sonar-scanner/bin:$PATH"
     }
 
     stages {
