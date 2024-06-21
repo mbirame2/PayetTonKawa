@@ -6,7 +6,7 @@ pipeline {
         SONARQUBE_URL = 'http://192.168.1.71:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
-        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+        //PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         PATH = "/opt/sonar-scanner-cli-6.0.0.4432-linux/bin:$PATH"
     }
 
