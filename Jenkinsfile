@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD}"
+                        sh "sonar-scanner -Dsonar.projectKey=your-project-key-${env.BRANCH_NAME} -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
                     }
                 }
             }
