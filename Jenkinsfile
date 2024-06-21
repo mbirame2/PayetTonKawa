@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'mbirame2/payeTonKawa-produit'
-        SONARQUBE_URL = 'http://192.168.1.71:9000'
+        SONARQUBE_URL = 'http://10.60.120.211:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         //PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
