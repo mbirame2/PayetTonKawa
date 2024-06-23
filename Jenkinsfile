@@ -82,7 +82,7 @@ pipeline {
                 script {
                     docker.withRegistry('', 'dockerhub-credentials') {
                         sh 'docker pull ${DOCKER_IMAGE}:${env.BUILD_ID}'
-                        sh 'docker run -d -p 80:80 ${DOCKER_IMAGE}:${env.BUILD_ID}'
+                        sh 'docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${env.BUILD_ID}'
                     }
                 }
             }
