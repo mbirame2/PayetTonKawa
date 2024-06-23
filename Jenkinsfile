@@ -27,16 +27,6 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 script {
-                    // Ensure Python 3 is installed
-                    sh '''
-                        if ! command -v python3 &> /dev/null
-                        then
-                            echo "Python 3 could not be found. Installing..."
-                            apt-get update
-                            apt-get install -y python3 python3-venv
-                        fi
-                    '''
-                    
                     // Create and activate a virtual environment
                     sh '''
                         python3 -m venv venv
