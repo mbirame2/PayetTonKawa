@@ -63,9 +63,9 @@ pipeline {
             steps {
                 script {
                     // Start Docker daemon in the background
-                    sh 'nohup sudo dockerd > dockerd.log 2>&1 &'
+                    sh 'nohup dockerd > dockerd.log 2>&1 &'
                     // Wait for Docker daemon to be up
-                    sh 'while(! sudo docker ps) do echo "Waiting for Docker to start..."; sleep 1; done'
+                    sh 'while(! docker ps) do echo "Waiting for Docker to start..."; sleep 1; done'
                 }
             }
         }
