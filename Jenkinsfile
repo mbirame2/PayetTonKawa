@@ -99,7 +99,7 @@ pipeline {
             steps {
                 script {                
                     sh "/usr/local/bin/docker pull ${DOCKER_IMAGE}:${env.BUILD_ID}"
-                    sh "docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${env.BUILD_ID}"                 
+                    sh "/usr/local/bin/docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${env.BUILD_ID}"                 
                 }
             }
         }
