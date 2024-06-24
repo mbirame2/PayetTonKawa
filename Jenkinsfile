@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    // agent any
     agent {
         docker {
             image 'docker:19.03.12'
@@ -81,7 +81,7 @@ pipeline {
                 checkout scm
             }
         }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
