@@ -23,6 +23,9 @@ pipeline {
             steps {
                 git url: "${env.GIT_URL}", branch: "${env.BRANCH_NAME}"
             }
+            steps {
+                checkout scm
+            }
         }
 
         stage('Check Java Version') {
@@ -75,12 +78,6 @@ pipeline {
         //         }
         //     }
         // }
-
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
