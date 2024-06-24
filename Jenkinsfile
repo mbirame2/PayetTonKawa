@@ -97,11 +97,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                script {
-                    docker.withRegistry('', 'dockerhub-credentials') {
-                        sh 'docker pull ${DOCKER_IMAGE}:${env.BUILD_ID}'
-                        sh 'docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${env.BUILD_ID}'
-                    }
+                script {                
+                    sh "/usr/local/bin/docker pull ${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    sh "docker run -d -p 8000:8000 ${DOCKER_IMAGE}:${env.BUILD_ID}"                 
                 }
             }
         }
