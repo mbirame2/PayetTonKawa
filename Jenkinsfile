@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    agent {
+        docker {
+            image 'docker:19.03.12'
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         DOCKER_IMAGE = 'mbirame2/payetonkawa_produit'
@@ -70,6 +76,12 @@ pipeline {
         //     }
         // }
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 script {
