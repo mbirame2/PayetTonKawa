@@ -39,9 +39,9 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'python3 -m venv venv'
-                sh "./venv/bin/pip install pytest==6.2.4"
-                sh "./venv/bin/pip install requests==2.25.1"
-                sh "./venv/bin/pip install fastapi"
+                // sh "./venv/bin/pip install pytest==6.2.4"
+                // sh "./venv/bin/pip install requests==2.25.1"
+                // sh "./venv/bin/pip install fastapi"
                 sh './venv/bin/pytest testu.py'
             }
         }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
+                        sh "${SONAR_RUNNER_HOME}/bin/sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
                     }
                 }
             } 
