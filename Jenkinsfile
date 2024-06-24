@@ -39,9 +39,9 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'python3 -m venv venv'
-                // sh "./venv/bin/pip install pytest==6.2.4"
-                // sh "./venv/bin/pip install requests==2.25.1"
-                // sh "./venv/bin/pip install fastapi"
+                sh "./venv/bin/pip install pytest==6.2.4"
+                sh "./venv/bin/pip install requests==2.25.1"
+                sh "./venv/bin/pip install fastapi"
                 sh './venv/bin/pytest testu.py'
             }
         }
