@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "${SONAR_RUNNER_HOME}/bin/sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
+                        sh "/usr/local/sonar-scanner/bin -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
                     }
                 }
             } 
