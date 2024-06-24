@@ -75,7 +75,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                    sh "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
                 }
             }
         }
@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
+                        sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${env.BUILD_ID}"
                     }
                 }
             }
