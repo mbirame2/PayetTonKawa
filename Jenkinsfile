@@ -3,7 +3,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = 'mbirame2/payetonkawa_produit'
-        SONARQUBE_URL = 'http://192.168.1.71:9000'
+        SONARQUBE_URL = 'http://localhost:9000'
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
@@ -52,9 +52,7 @@ pipeline {
             }
             steps {
                 script {
-                    withSonarQubeEnv('SonarQube') {
                         sh "sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.java.binaries=**/*.java"
-                    }
                 }
             } 
         }
