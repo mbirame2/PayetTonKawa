@@ -89,7 +89,7 @@ pipeline {
                     //     sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${env.BUILD_ID}"
                     // }
                     sh "/usr/local/bin/docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
-                    sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${env.BUILD_ID}"
                     sh "/usr/local/bin/docker logout"
                 }
             }
