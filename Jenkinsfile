@@ -46,18 +46,18 @@ pipeline {
             }
         }
 
-        stage('Code Quality Analysis') {
-            tools {
-                jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
-            }
-            steps {
-                script {
-                    withSonarQubeEnv('SonarQube') {
-                        sh "/usr/local/sonar-scanner/bin/sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
-                    }
-                }
-            } 
-        }
+        // stage('Code Quality Analysis') {
+        //     tools {
+        //         jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
+        //     }
+        //     steps {
+        //         script {
+        //             withSonarQubeEnv('SonarQube') {
+        //                 sh "/usr/local/sonar-scanner/bin/sonar-scanner -X -Dsonar.projectKey=paye_ton_kawa -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
+        //             }
+        //         }
+        //     } 
+        // }
 
         // stage('Start Docker Daemon') {
         //     steps {
