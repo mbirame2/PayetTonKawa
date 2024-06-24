@@ -8,6 +8,8 @@ pipeline {
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
         SONARQUBE_PASSWORD = 'musulmant'
+        DOCKERHUB_USERNAME='mbirame2'
+        DOCKERHUB_PASSWORD = 'musulmant'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         //PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         PATH = "/opt/sonar-scanner/bin:$PATH"
@@ -83,9 +85,12 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${env.BUILD_ID}"
-                    }
+                    // docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
+                    //     sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${env.BUILD_ID}"
+                    // }
+                    sh "/usr/local/bin/docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
+                    sh "/usr/local/bin/docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "/usr/local/bin/docker logout"
                 }
             }
         }
