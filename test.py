@@ -29,7 +29,7 @@ def test_create_commande():
     assert data["statut"] == new_commande["statut"]
 
 def test_read_commande():
-    response = client.get("/commandes/1")
+    response = client.get("/commandes/2")
     assert response.status_code == 200
     data = response.json()
     assert data["id"] == 1
