@@ -55,13 +55,13 @@ def test_update_commande():
 
 def test_delete_commande():
     # Assurez-vous qu'il y a une commande avec id 1 dans votre base de données pour ce test
-    response = client.delete("/commandes/1")
+    response = client.delete("/commandes/2")
     assert response.status_code == 200
     data = response.json()
     assert data["message"] == "Commande deleted successfully"
 
     # Vérifiez que la commande a été supprimée
-    response = client.get("/commandes/1")
+    response = client.get("/commandes/2")
     assert response.status_code == 404
     data = response.json()
     assert data["detail"] == "Commande not found"
