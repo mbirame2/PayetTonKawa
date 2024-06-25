@@ -54,7 +54,7 @@ def test_read_clients():
     response = client.get("/clients")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 1
+    assert len(data) == 4
     assert data[0]["nom"] == "Doe"
     assert data[0]["prenom"] == "John"
 
