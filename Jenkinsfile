@@ -84,7 +84,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy') { 
             steps {
                 script {                
                     sh "/usr/local/bin/docker pull ${DOCKER_IMAGE}:${env.BUILD_ID}"
