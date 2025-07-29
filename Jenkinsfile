@@ -7,7 +7,7 @@ pipeline {
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
-        SONARQUBE_PASSWORD = '.8IB{t03@96E'
+        SONARQUBE_TOKEN = credentials('newSonarqube')
         DOCKERHUB_USERNAME='mbirame2'
         DOCKERHUB_PASSWORD = 'musulmant2000'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
@@ -57,7 +57,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarQube') {
-                        sh "/usr/local/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=paye_ton_kawa_client -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
+                        sh "/usr/local/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=paye_ton_kawa_client -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.token=${env.SONARQUBE_TOKEN} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
                     }
                 }
             } 
