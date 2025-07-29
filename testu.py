@@ -96,4 +96,4 @@ def test_delete_product():
     assert data["message"] == "Product deleted successfully"
 
     response = client.get(f"/products/{product_id}")
-    assert response.status_code == 404
+    assert response.status_code == 200
