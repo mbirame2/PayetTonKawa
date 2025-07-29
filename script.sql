@@ -1,12 +1,12 @@
-CREATE TABLE Produit (
+CREATE TABLE Product (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL,
-    prix DECIMAL(10, 2) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
     description TEXT,
-    stock INT NOT NULL
+    quantity INT NOT NULL
 );
 
-INSERT INTO Produit (nom, prix, description, stock) VALUES
+INSERT INTO Product (name, price, description, quantity) VALUES
 ('Produit A', 19.99, 'Description du produit A', 100),
 ('Produit B', 29.99, 'Description du produit B', 150),
 ('Produit C', 39.99, 'Description du produit C', 200),
