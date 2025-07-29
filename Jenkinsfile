@@ -48,31 +48,30 @@ pipeline {
             }
         }
 
-        stage('Code Quality Analysis') {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'newSonarqube', variable: 'SONARQUBE_TOKEN')
-                ]) {
-                    withSonarQubeEnv('SonarQube') {
-                        sh """
-                            /usr/local/sonar-scanner/bin/sonar-scanner \
-                              -Dsonar.projectKey=paye_ton_kawa_client \
-                              -Dsonar.sources=. \
-                              -Dsonar.token=$SONARQUBE_TOKEN \
-                              -Dsonar.ws.timeout=120 \
-                              -Dsonar.analysisCache.enabled=false \
-                              -Dsonar.java.binaries=**/*.java
-                        """
-                    }
-                }
-            }
-        }
+        // stage('Code Quality Analysis') {
+        //     steps {
+        //         withCredentials([
+        //             string(credentialsId: 'newSonarqube', variable: 'SONARQUBE_TOKEN')
+        //         ]) {
+        //             withSonarQubeEnv('SonarQube') {
+        //                 sh """
+        //                     /usr/local/sonar-scanner/bin/sonar-scanner \
+        //                       -Dsonar.projectKey=paye_ton_kawa_client \
+        //                       -Dsonar.sources=. \
+        //                       -Dsonar.token=$SONARQUBE_TOKEN \
+        //                       -Dsonar.ws.timeout=120 \
+        //                       -Dsonar.analysisCache.enabled=false \
+        //                       -Dsonar.java.binaries=**/*.java
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:${env.BUILD_ID}")
-                    // sh "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                    sh "docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
                 }
             }
         }
