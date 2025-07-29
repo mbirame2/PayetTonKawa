@@ -4,9 +4,13 @@ from typing import List
 import sqlite3
 from sqlite3 import Error
 from datetime import datetime
+from kafka import KafkaProducer
+import json
 
 
 app = FastAPI()
+
+producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 DATABASE = "MSPR3.db"
 
@@ -110,6 +114,8 @@ async def create_commande(commande: CommandeCreate):
     commande_id = cursor.lastrowid
     cursor.close()
     connection.close()
+    message = {"product_id": commande.id_produit, "quantite": commande.quantite}
+    producer.send('order_topic', message)
     return Commande(id=commande_id, **commande.dict())
 
 @app.put("/commandes/{commande_id}", response_model=Commande)
