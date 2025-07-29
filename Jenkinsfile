@@ -7,7 +7,7 @@ pipeline {
         SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
-        SONARQUBE_PASSWORD = 'musulmant'
+        SONARQUBE_PASSWORD = '.8IB{t03@96E'
         DOCKERHUB_USERNAME='mbirame2'
         DOCKERHUB_PASSWORD = 'musulmant2000'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
