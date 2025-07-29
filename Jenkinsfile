@@ -42,6 +42,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'python3 -m venv venv'
+                sh "./venv/bin/pip install httpx"
                 sh "./venv/bin/pip install pytest==6.2.4"
                 sh "./venv/bin/pip install requests==2.25.1"
                 sh "./venv/bin/pip install fastapi"
@@ -50,16 +51,23 @@ pipeline {
         }
 
         stage('Code Quality Analysis') {
-            tools {
-                jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
-            }
             steps {
-                script {
+                withCredentials([
+                    string(credentialsId: 'newSonarqube', variable: 'SONARQUBE_TOKEN')
+                ]) {
                     withSonarQubeEnv('SonarQube') {
-                        sh "/usr/local/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=paye_ton_kawa_commande -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.password=${env.SONARQUBE_PASSWORD} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
+                        sh """
+                            /usr/local/sonar-scanner/bin/sonar-scanner \
+                              -Dsonar.projectKey=paye_ton_kawa_commande \
+                              -Dsonar.sources=. \
+                              -Dsonar.token=$SONARQUBE_TOKEN \
+                              -Dsonar.ws.timeout=120 \
+                              -Dsonar.analysisCache.enabled=false \
+                              -Dsonar.java.binaries=**/*.java
+                        """
                     }
                 }
-            } 
+            }
         }
 
         stage('Build Docker Image') {
