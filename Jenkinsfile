@@ -71,7 +71,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
+                    docker.build("${DOCKER_IMAGE}:${env.BUILD_ID}")
+                    // sh "/usr/local/bin/docker build -t ${DOCKER_IMAGE}:${env.BUILD_ID} ."
                 }
             }
         }
