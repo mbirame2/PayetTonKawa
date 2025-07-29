@@ -14,7 +14,7 @@ COPY requirements.txt /app/
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --no-cache-dir uvicorn fastapi
+RUN pip install --no-cache-dir uvicorn fastapi kafka-python
 
 
 # Copy the application code to the container
