@@ -43,6 +43,7 @@ pipeline {
             steps {
                 sh 'python3 -m venv venv'
                 sh "./venv/bin/pip install httpx"
+                sh "./venv/bin/pip install kafka-python"
                 sh "./venv/bin/pip install pytest==6.2.4"
                 sh "./venv/bin/pip install requests==2.25.1"
                 sh "./venv/bin/pip install fastapi"
@@ -61,7 +62,7 @@ pipeline {
                               -Dsonar.projectKey=paye_ton_kawa_commande \
                               -Dsonar.sources=. \
                               -Dsonar.token=$SONARQUBE_TOKEN \
-                              -Dsonar.ws.timeout=120 \
+                              -Dsonar.ws.timeout=180 \
                               -Dsonar.analysisCache.enabled=false \
                               -Dsonar.java.binaries=**/*.java
                         """
