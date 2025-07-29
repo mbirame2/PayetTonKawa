@@ -6,7 +6,6 @@ pipeline {
         SONARQUBE_URL = 'http://localhost:9000'
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
-        SONARQUBE_TOKEN = credentials('newSonarqube')
         DOCKERHUB_USERNAME='mbirame2'
         DOCKERHUB_PASSWORD = 'musulmant2000'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
@@ -50,16 +49,23 @@ pipeline {
         }
 
         stage('Code Quality Analysis') {
-            tools {
-                jdk "jdk17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
-            }
             steps {
-                script {
+                withCredentials([
+                    string(credentialsId: 'newSonarqube', variable: 'SONARQUBE_TOKEN')
+                ]) {
                     withSonarQubeEnv('SonarQube') {
-                        sh "/usr/local/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=paye_ton_kawa_client -Dsonar.analysisCache.enabled=false -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.login=${env.SONARQUBE_LOGIN} -Dsonar.token=${env.SONARQUBE_TOKEN} -Dsonar.ws.timeout=120 -Dsonar.java.binaries=**/*.java"
+                        sh """
+                            /usr/local/sonar-scanner/bin/sonar-scanner \
+                              -Dsonar.projectKey=paye_ton_kawa_client \
+                              -Dsonar.sources=. \
+                              -Dsonar.token=$SONARQUBE_TOKEN \
+                              -Dsonar.ws.timeout=120 \
+                              -Dsonar.analysisCache.enabled=false \
+                              -Dsonar.java.binaries=**/*.java
+                        """
                     }
                 }
-            } 
+            }
         }
 
         stage('Build Docker Image') {
