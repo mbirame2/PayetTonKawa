@@ -4,7 +4,6 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'mbirame2/payetonkawa_client'
         SONARQUBE_URL = 'http://localhost:9000'
-        SONARQUBE_TOKEN = credentials('sonarqube-token')
         JAVA_HOME = "/usr/lib/jvm/java-1.17.0-openjdk-amd64"
         SONARQUBE_LOGIN = 'admin'
         SONARQUBE_TOKEN = credentials('newSonarqube')
