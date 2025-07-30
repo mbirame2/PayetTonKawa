@@ -40,7 +40,7 @@ async def read_products():
     result = cursor.fetchall()
     cursor.close()
     connection.close()
-    products = [Product(**dict(row)) for row in result ]
+    products = [Product(id=product[0], name=product[1], description=product[2], price=product[3], quantity=product[4]) for product in result]
     return products
 
 # Route pour récupérer un produit par ID
@@ -55,7 +55,7 @@ async def read_product(product_id: int):
     cursor.close()
     connection.close()
     if result:
-        return Product(**dict(result))
+        return Product(id=result[0], name=result[1], description=result[2], price=result[3], quantity=result[4])
     else:
         raise HTTPException(status_code=404, detail="Product not found")
 
