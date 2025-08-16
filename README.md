@@ -147,4 +147,3 @@ CI jobs triggered via repository changes with Jenkins handling the full CI/CD wo
 
 ## 📄 License
 
-MIT License (or adapt as per project needs)
