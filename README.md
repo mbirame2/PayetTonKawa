@@ -145,5 +145,16 @@ CI jobs triggered via repository changes with Jenkins handling the full CI/CD wo
 
 ---
 
+## 📚 Images 
+
+- ![MIcroservicesDatabase](./assets/Capture d’écran 2025-08-19 à 13.18.04.png)
+
+- Frontend integration
+- Role-based access control (RBAC)
+- Advanced monitoring and logging
+
+---
+
 ## 📄 License
 
+Birame MBOUP
