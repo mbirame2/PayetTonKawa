@@ -147,11 +147,11 @@ CI jobs triggered via repository changes with Jenkins handling the full CI/CD wo
 
 ## 📚 Images
 
-- ![All three Microservices Database](./assets/Capture d’écran 2025-08-19 à 13.18.04.png)
-- ![Kafka and the command request](./assets/Capture d’écran 2025-08-19 à 13.29.25.png)
-- ![CI CD Jenkins using Sonarqube](./assets/Capture d’écran 2025-08-19 à 13.30.33.png)
-- ![Compilation of our Pipeline CI CD execution issue](./assets/Capture d’écran 2025-08-19 à 13.31.55.png)
-- ![Different stages of our Pipeline CI CD](./assets/Capture d’écran 2025-08-19 à 13.32.21.png)
+- ![All three Microservices Database](./assets/microservices-db.png)
+- ![Kafka and the command request](./assets/kafka-command.png)
+- ![CI CD Jenkins using Sonarqube](./assets/jenkins-sonarqube.png)
+- ![Compilation of our Pipeline CI CD execution issue](./assets/cicd-issue.png)
+- ![Different stages of our Pipeline CI CD](./assets/cicd-stages.png)
 ---
 
 ## 📄 License
